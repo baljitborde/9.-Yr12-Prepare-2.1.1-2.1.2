@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Bases &amp; Units of Measurement – Year 12 Pre-learning | Pearson Edexcel IAS</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;}
+body{margin:0;padding:0;background:#f5f5f5;font-family:'Lato',sans-serif;font-size:14pt;color:#333333;line-height:1.65;}
+
+.opt{display:block;font-family:'Lato',sans-serif;font-size:14pt;padding:11px 18px;border:2px solid #d0d0d0;border-radius:6px;background:#ffffff;color:#333333;cursor:pointer;margin-bottom:10px;line-height:1.4;user-select:none;-webkit-user-select:none;transition:background 0.12s,border-color 0.12s;}
+.opt:hover{background:#e3f2fd;border-color:#007BA6;}
+.opt.correct{background:#e8f5e9!important;border-color:#388e3c!important;color:#1b5e20!important;font-weight:700;pointer-events:none;cursor:default;}
+.opt.wrong{background:#ffebee!important;border-color:#C62828!important;color:#7f0000!important;pointer-events:none;cursor:default;}
+.opt.reveal{background:#e8f5e9!important;border-color:#388e3c!important;color:#1b5e20!important;font-weight:700;pointer-events:none;cursor:default;}
+.opt.locked{pointer-events:none;cursor:default;}
+
+.wopt{display:inline-block;font-family:'Courier New',Courier,monospace;font-size:13pt;font-weight:700;padding:8px 18px;border:2px solid #d0d0d0;border-radius:6px;background:#ffffff;color:#333333;cursor:pointer;margin:4px 6px 4px 0;line-height:1.4;user-select:none;-webkit-user-select:none;transition:background 0.12s,border-color 0.12s;}
+.wopt:hover{background:#e3f2fd;border-color:#007BA6;}
+.wopt.correct{background:#e8f5e9!important;border-color:#388e3c!important;color:#1b5e20!important;pointer-events:none;}
+.wopt.wrong{background:#ffebee!important;border-color:#C62828!important;color:#7f0000!important;pointer-events:none;}
+.wopt.reveal{background:#e8f5e9!important;border-color:#388e3c!important;color:#1b5e20!important;pointer-events:none;}
+.wopt.locked{pointer-events:none;}
+
+.fb{display:none;font-family:'Lato',sans-serif;font-size:14pt;line-height:1.65;padding:14px 18px;border-radius:6px;margin-top:14px;}
+.fb-ok{background:#e8f5e9;color:#1b5e20;border:1px solid #81c784;}
+.fb-bad{background:#ffebee;color:#7f0000;border:1px solid #ef9a9a;}
+
+.tf-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:10px;padding:12px 16px;background:#fff;border:1px solid #d0d0d0;border-radius:6px;flex-wrap:wrap;}
+.tf-stmt{flex:1;font-family:'Lato',sans-serif;font-size:14pt;color:#333;line-height:1.5;}
+.tf-btns{display:flex;gap:8px;flex-shrink:0;margin-top:2px;}
+.tf-btn{font-family:'Lato',sans-serif;font-size:12pt;font-weight:700;padding:7px 18px;border:2px solid #d0d0d0;border-radius:6px;background:#fff;color:#333;cursor:pointer;}
+.tf-btn:hover{background:#e3f2fd;border-color:#007BA6;}
+.tf-btn.ok{background:#e8f5e9;border-color:#388e3c;color:#1b5e20;pointer-events:none;}
+.tf-btn.bad{background:#ffebee;border-color:#C62828;color:#7f0000;pointer-events:none;}
+.tf-btn.show{background:#e8f5e9;border-color:#388e3c;color:#1b5e20;pointer-events:none;}
+.tf-row.done .tf-btn{pointer-events:none;}
+.tf-row > div:not(.tf-stmt):not(.tf-btns){flex-basis:100%;}
+
+.match-row{display:grid;grid-template-columns:200px 1fr;gap:8px;margin-bottom:8px;align-items:center;}
+.match-term{font-family:'Courier New',monospace;font-size:13pt;font-weight:700;padding:9px 12px;background:#1e1e2e;border-radius:6px;color:#a6e3a1;text-align:center;line-height:1.4;}
+.match-sel{font-family:'Lato',sans-serif;font-size:13pt;padding:9px 12px;border:2px solid #d0d0d0;border-radius:6px;background:#fff;color:#333;width:100%;cursor:pointer;}
+.match-sel:focus{outline:none;border-color:#007BA6;}
+.match-row.ok .match-sel{background:#e8f5e9;border-color:#388e3c;color:#1b5e20;}
+.match-row.bad .match-sel{background:#ffebee;border-color:#C62828;color:#7f0000;}
+.match-btn,.check-btn{display:inline-block;font-family:'Lato',sans-serif;font-size:12pt;font-weight:700;padding:8px 22px;border:2px solid #007BA6;border-radius:6px;background:#007BA6;color:#fff;cursor:pointer;margin-top:12px;}
+.match-btn:hover,.check-btn:hover{background:#005f80;}
+.match-btn:disabled,.check-btn:disabled{background:#b3d4e8;border-color:#b3d4e8;cursor:default;}
+.match-result,.drag-result{display:none;font-family:'Lato',sans-serif;font-size:14pt;line-height:1.65;padding:14px 18px;border-radius:6px;margin-top:12px;}
+
+.drag-bank{display:flex;flex-wrap:wrap;gap:8px;padding:14px;background:#f0f8ff;border:2px dashed #b3d4e8;border-radius:6px;min-height:52px;margin-bottom:12px;}
+.drag-chip{font-family:'Lato',sans-serif;font-size:12pt;font-weight:700;padding:7px 16px;border:2px solid #007BA6;border-radius:6px;background:#e3f2fd;color:#007BA6;cursor:grab;white-space:nowrap;user-select:none;-webkit-user-select:none;line-height:1.3;}
+.drag-chip:active{cursor:grabbing;opacity:0.7;}
+.drag-chip.picked{outline:3px solid #e65100;outline-offset:1px;}
+.drag-chip.locked{cursor:default;pointer-events:none;opacity:0.75;}
+.drop-zone{display:inline-flex;align-items:center;justify-content:center;min-width:130px;padding:4px 8px;border-bottom:3px solid #007BA6;background:#fafafa;font-family:'Lato',sans-serif;font-size:12pt;color:#C62828;font-weight:700;vertical-align:middle;text-align:center;min-height:36px;cursor:pointer;}
+.drop-zone:empty::before{content:'?';}
+.drop-zone.drag-over,.drag-bank.drag-over{background:#e3f2fd;border-bottom-color:#C62828;}
+.drop-zone .drag-chip{white-space:normal;}
+.sort-zone{display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:6px;min-height:76px;}
+.sort-zone .drag-chip,.long-chips .drag-chip{white-space:normal;}
+.tap-tip{font-size:11pt;color:#666;margin-bottom:10px;font-style:italic;}
+
+code{font-family:'Courier New',monospace;background:#f0f0f0;padding:1px 6px;border-radius:3px;font-size:13pt;}
+.cx-tbl{border-collapse:collapse;width:100%;font-size:13pt;}
+.cx-tbl th{background:#007BA6;color:#fff;padding:9px 14px;border:1px solid #005f80;text-align:center;}
+.cx-tbl td{border:1px solid #d0d0d0;padding:8px 14px;text-align:left;vertical-align:top;}
+.cx-tbl tr:nth-child(even) td{background:#f0f8ff;}
+.cx-tbl.c td{text-align:center;vertical-align:middle;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.g2>*,.g3>*{min-width:0;}
+.mono{font-family:'Courier New',monospace;font-weight:700;}
+
+/* number inputs */
+.num-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;padding:10px 14px;background:#fff;border:1px solid #d0d0d0;border-radius:6px;}
+.num-q{flex:1;min-width:220px;font-size:13.5pt;}
+input.num{width:150px;font-family:'Courier New',monospace;font-size:13pt;font-weight:700;padding:7px 10px;border:2px solid #d0d0d0;border-radius:6px;text-align:center;}
+input.num:focus{outline:none;border-color:#007BA6;}
+input.num.ok{border-color:#388e3c;background:#e8f5e9;color:#1b5e20;}
+input.num.bad{border-color:#C62828;background:#ffebee;color:#7f0000;}
+
+/* binary explorer */
+.bits{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;}
+.bitcol{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.bitpv{font-family:'Courier New',monospace;font-size:11pt;font-weight:700;color:#a6adc8;}
+.bitbtn{width:54px;height:54px;font-family:'Courier New',monospace;font-size:22pt;font-weight:700;border:2px solid #45475a;border-radius:8px;background:#313244;color:#6c7086;cursor:pointer;}
+.bitbtn.on{background:#a6e3a1;color:#1e1e2e;border-color:#a6e3a1;}
+.explorer{background:#1e1e2e;border-radius:8px;padding:18px 20px;color:#cdd6f4;}
+.ex-out{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:14px;font-size:15pt;}
+.ex-out span{font-family:'Courier New',monospace;font-weight:700;color:#f9e2af;font-size:18pt;}
+.target{display:inline-block;padding:4px 14px;border-radius:20px;border:2px solid #45475a;margin:4px;font-weight:700;font-size:12pt;}
+.target.now{border-color:#fab387;color:#fab387;}
+.target.done{border-color:#a6e3a1;color:#a6e3a1;}
+
+/* place value strip */
+.pv{display:flex;border:2px solid #007BA6;border-radius:6px;overflow:hidden;}
+.pv div{flex:1;text-align:center;border-right:1px solid #b3d4e8;}
+.pv div:last-child{border-right:none;}
+.pv .h{background:#007BA6;color:#fff;font-weight:700;font-size:12pt;padding:4px 0;}
+.pv .b{font-family:'Courier New',monospace;font-weight:700;font-size:15pt;padding:6px 0;background:#fff;}
+.pv .b .drop-zone{min-width:0;width:100%;}
+
+@media (max-width:720px){
+  .g2,.g3{grid-template-columns:1fr;}
+  .match-row{grid-template-columns:1fr;}
+  .tf-row{flex-direction:column;}
+  .bitbtn{width:38px;height:44px;font-size:16pt;}
+}
+</style>
+</head>
+<body style="margin:0;padding:0;background:#f5f5f5;">
+<div style="max-width:960px;margin:0 auto;padding:0 0 80px;">
+
+<!-- HEADER -->
+<div style="background:#007BA6;padding:32px 40px 28px;">
+  <div style="font-size:11pt;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Pearson Edexcel International AS Computer Science &bull; Unit 1 &bull; Topics 2.1.1 &amp; 2.1.2</div>
+  <div style="font-size:24pt;font-weight:700;color:#ffffff;margin:0 0 6px;">Number Bases &amp; Units of Measurement</div>
+  <div style="font-size:14pt;color:rgba(255,255,255,0.88);">Pre-learning &nbsp;|&nbsp; Year 12 Computer Science</div>
+  <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;">
+    <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:11pt;font-weight:700;padding:4px 14px;border-radius:20px;">&#9679; 90 minutes</span>
+    <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:11pt;font-weight:700;padding:4px 14px;border-radius:20px;">&#9679; 6 sections</span>
+    <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:11pt;font-weight:700;padding:4px 14px;border-radius:20px;">&#9679; 22 interactive activities</span>
+  </div>
+</div>
+
+<!-- CONTENTS -->
+<div style="background:#ffffff;border-bottom:1px solid #d0d0d0;padding:20px 40px;">
+  <div style="font-size:12pt;font-weight:700;color:#007BA6;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;">Contents</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;">
+    <div style="display:flex;align-items:center;gap:8px;font-size:12pt;"><div style="min-width:22px;height:22px;border-radius:50%;background:#007BA6;color:#fff;font-size:10pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>Number Bases</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12pt;"><div style="min-width:22px;height:22px;border-radius:50%;background:#007BA6;color:#fff;font-size:10pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>Binary &harr; Denary</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12pt;"><div style="min-width:22px;height:22px;border-radius:50%;background:#007BA6;color:#fff;font-size:10pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>Hexadecimal</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12pt;"><div style="min-width:22px;height:22px;border-radius:50%;background:#007BA6;color:#fff;font-size:10pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>Bits, Nibbles, Bytes &amp; States</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12pt;"><div style="min-width:22px;height:22px;border-radius:50%;background:#007BA6;color:#fff;font-size:10pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</div>Binary (IEC) &amp; Decimal (SI) Prefixes</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12pt;"><div style="min-width:22px;height:22px;border-radius:50%;background:#007BA6;color:#fff;font-size:10pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">6</div>Converting &amp; Calculating</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:12pt;"><div style="min-width:22px;height:22px;border-radius:50%;background:#007BA6;color:#fff;font-size:10pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">&#10003;</div>Summary</div>
+  </div>
+</div>
+
+<div style="padding:40px 40px 0;">
+
+<!-- ═══════════════ SECTION 1 — NUMBER BASES ═══════════════ -->
+<div style="margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid #d0d0d0;">
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid #007BA6;">
+    <div style="min-width:36px;height:36px;border-radius:50%;background:#007BA6;color:#fff;font-size:14pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+    <div style="font-size:18pt;font-weight:700;color:#007BA6;">Number Bases</div>
+    <div style="margin-left:auto;font-size:10pt;font-weight:700;color:#007BA6;background:#e3f2fd;padding:4px 12px;border-radius:20px;white-space:nowrap;border:1px solid #b3d4e8;flex-shrink:0;">&#9679; ~12 minutes</div>
+  </div>
+
+  <div style="background:#fff;border:1px solid #d0d0d0;border-radius:6px;padding:20px 24px;margin-bottom:18px;">
+    <p style="margin:0 0 14px;">A <strong>number base</strong> (or <strong>radix</strong>) is the number of different digits a number system uses. The base also sets the <strong>place values</strong>: each column is worth the base times the column to its right. In this topic you work with <strong>unsigned integers</strong> — whole numbers that are zero or positive, with no sign.</p>
+
+    <div class="g3" style="margin-bottom:16px;">
+      <div style="background:#e3f2fd;border-radius:8px;padding:16px 18px;border-top:4px solid #007BA6;">
+        <div style="font-weight:700;color:#007BA6;font-size:15pt;margin-bottom:6px;">Denary (base 10)</div>
+        <p style="margin:0 0 6px;font-size:12.5pt;">Digits <span class="mono">0–9</span>. Place values 1, 10, 100, 1000…</p>
+        <p style="margin:0;font-size:12.5pt;"><strong>Why needed:</strong> the system people use every day, so it is used for input and output that humans read.</p>
+      </div>
+      <div style="background:#e8f5e9;border-radius:8px;padding:16px 18px;border-top:4px solid #388e3c;">
+        <div style="font-weight:700;color:#388e3c;font-size:15pt;margin-bottom:6px;">Binary (base 2)</div>
+        <p style="margin:0 0 6px;font-size:12.5pt;">Digits <span class="mono">0</span> and <span class="mono">1</span>. Place values 1, 2, 4, 8, 16…</p>
+        <p style="margin:0;font-size:12.5pt;"><strong>Why needed:</strong> computers are built from billions of transistors, which are switches with two states — off (0) and on (1). All data and instructions are stored and processed in binary.</p>
+      </div>
+      <div style="background:#f3e5f5;border-radius:8px;padding:16px 18px;border-top:4px solid #9966FF;">
+        <div style="font-weight:700;color:#9966FF;font-size:15pt;margin-bottom:6px;">Hexadecimal (base 16)</div>
+        <p style="margin:0 0 6px;font-size:12.5pt;">Digits <span class="mono">0–9</span> then <span class="mono">A–F</span> (A = 10 … F = 15). Place values 1, 16, 256…</p>
+        <p style="margin:0;font-size:12.5pt;"><strong>Why needed:</strong> a short, human-friendly way to write binary. The computer still uses binary — hex is only for people.</p>
+      </div>
+    </div>
+
+    <div style="overflow-x:auto;margin-bottom:16px;">
+      <table class="cx-tbl c" style="min-width:560px;">
+        <tr><th>Denary</th><th>Binary</th><th>Hex</th><th>Denary</th><th>Binary</th><th>Hex</th></tr>
+        <tr><td>0</td><td class="mono">0000</td><td class="mono">0</td><td>8</td><td class="mono">1000</td><td class="mono">8</td></tr>
+        <tr><td>1</td><td class="mono">0001</td><td class="mono">1</td><td>9</td><td class="mono">1001</td><td class="mono">9</td></tr>
+        <tr><td>2</td><td class="mono">0010</td><td class="mono">2</td><td>10</td><td class="mono">1010</td><td class="mono">A</td></tr>
+        <tr><td>3</td><td class="mono">0011</td><td class="mono">3</td><td>11</td><td class="mono">1011</td><td class="mono">B</td></tr>
+        <tr><td>4</td><td class="mono">0100</td><td class="mono">4</td><td>12</td><td class="mono">1100</td><td class="mono">C</td></tr>
+        <tr><td>5</td><td class="mono">0101</td><td class="mono">5</td><td>13</td><td class="mono">1101</td><td class="mono">D</td></tr>
+        <tr><td>6</td><td class="mono">0110</td><td class="mono">6</td><td>14</td><td class="mono">1110</td><td class="mono">E</td></tr>
+        <tr><td>7</td><td class="mono">0111</td><td class="mono">7</td><td>15</td><td class="mono">1111</td><td class="mono">F</td></tr>
+      </table>
+    </div>
+
+    <div style="border-left:4px solid #9966FF;background:#f3e5f5;padding:12px 16px;border-radius:0 6px 6px 0;margin-bottom:14px;">
+      <strong style="color:#9966FF;">Showing the base:</strong> <span class="mono">10</span> could mean ten, two or sixteen! Write the base as a subscript to remove the doubt: <span class="mono">1010<sub>2</sub> = 10<sub>10</sub> = A<sub>16</sub></span>. Hex is also often written with a prefix such as <span class="mono">0x</span> or <span class="mono">#</span>, e.g. <span class="mono">0xFF</span> or the colour <span class="mono">#FF8800</span>.
+    </div>
+    <div style="border-left:4px solid #007BA6;background:#e3f2fd;padding:12px 16px;border-radius:0 6px 6px 0;">
+      <strong style="color:#007BA6;">Specification 2.1.1 &amp; 2.1.2:</strong> You need to know the definition, function and characteristics of binary, denary and hexadecimal and why each is needed, and be able to convert unsigned integers between bases. For units of measurement you need to know bits, nibbles and bytes, the IEC binary prefixes (kibi, mebi, gibi, tebi) and the SI decimal prefixes (kilo, mega, giga, tera), and be able to rank, convert, use and interpret them, and calculate the number of states a number of bits can represent.
+    </div>
+  </div>
+
+  <!-- Activity 1 — match -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#9654; Activity 1 — Match the term to its definition</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:14px;">Use the dropdowns to match each term to its definition.</div>
+    <div id="match1">
+      <div class="match-row"><div class="match-term">Number base</div><select class="match-sel" data-ans="base"></select></div>
+      <div class="match-row"><div class="match-term">Denary</div><select class="match-sel" data-ans="den"></select></div>
+      <div class="match-row"><div class="match-term">Binary</div><select class="match-sel" data-ans="bin"></select></div>
+      <div class="match-row"><div class="match-term">Hexadecimal</div><select class="match-sel" data-ans="hex"></select></div>
+      <div class="match-row"><div class="match-term">Unsigned integer</div><select class="match-sel" data-ans="uns"></select></div>
+    </div>
+    <button class="match-btn" id="match1-btn" onclick="checkMatch1()">&#10003; Check my answers</button>
+    <div class="match-result" id="match1-res"></div>
+  </div>
+
+  <!-- Activity 2 — MCQ correct=b -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#10003; Activity 2 — Multiple choice</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:14px;line-height:1.5;">Why do computers store and process data in binary?</div>
+    <div id="opts2">
+      <div class="opt" onclick="pickOpt(2,'a',this)">a) Binary numbers are shorter than denary numbers</div>
+      <div class="opt" onclick="pickOpt(2,'b',this)">b) Computers are made from transistors, which are switches with only two states: on and off</div>
+      <div class="opt" onclick="pickOpt(2,'c',this)">c) Binary is easier for programmers to read than hexadecimal</div>
+      <div class="opt" onclick="pickOpt(2,'d',this)">d) Binary can store larger numbers than denary using the same number of digits</div>
+    </div>
+    <div class="fb" id="fb2"></div>
+  </div>
+
+  <!-- Activity 3 — TF -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#10003; Activity 3 — True or False?</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:14px;">Click True or False for each statement about number bases.</div>
+    <div class="tf-row" id="tf1">
+      <div class="tf-stmt">Hexadecimal uses sixteen different digits: 0–9 and A–F.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(1,true,true)">True</button><button class="tf-btn" onclick="doTF(1,false,true)">False</button></div>
+    </div>
+    <div class="tf-row" id="tf2">
+      <div class="tf-stmt">The CPU converts binary into hexadecimal before it processes data, because hex is faster.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(2,true,false)">True</button><button class="tf-btn" onclick="doTF(2,false,false)">False</button></div>
+    </div>
+    <div class="tf-row" id="tf3">
+      <div class="tf-stmt">In any base, each place value is the base multiplied by the place value to its right.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(3,true,true)">True</button><button class="tf-btn" onclick="doTF(3,false,true)">False</button></div>
+    </div>
+    <div class="tf-row" id="tf4">
+      <div class="tf-stmt">An unsigned integer can be negative.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(4,true,false)">True</button><button class="tf-btn" onclick="doTF(4,false,false)">False</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SECTION 2 — BINARY ↔ DENARY ═══════════════ -->
+<div style="margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid #d0d0d0;">
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid #007BA6;">
+    <div style="min-width:36px;height:36px;border-radius:50%;background:#007BA6;color:#fff;font-size:14pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+    <div style="font-size:18pt;font-weight:700;color:#007BA6;">Converting Between Binary and Denary</div>
+    <div style="margin-left:auto;font-size:10pt;font-weight:700;color:#007BA6;background:#e3f2fd;padding:4px 12px;border-radius:20px;white-space:nowrap;border:1px solid #b3d4e8;flex-shrink:0;">&#9679; ~18 minutes</div>
+  </div>
+
+  <div style="background:#fff;border:1px solid #d0d0d0;border-radius:6px;padding:20px 24px;margin-bottom:18px;">
+    <div style="font-size:15pt;font-weight:700;color:#007BA6;margin-bottom:8px;">Binary &rarr; denary</div>
+    <p style="margin:0 0 10px;">Write the place values above the bits, then <strong>add up the place values that have a 1</strong> under them.</p>
+    <div class="pv" style="margin-bottom:6px;">
+      <div><div class="h">128</div><div class="b">1</div></div><div><div class="h">64</div><div class="b">0</div></div><div><div class="h">32</div><div class="b">1</div></div><div><div class="h">16</div><div class="b">1</div></div>
+      <div><div class="h">8</div><div class="b">0</div></div><div><div class="h">4</div><div class="b">1</div></div><div><div class="h">2</div><div class="b">0</div></div><div><div class="h">1</div><div class="b">1</div></div>
+    </div>
+    <p style="margin:0 0 18px;font-size:13pt;"><span class="mono">10110101<sub>2</sub></span> = 128 + 32 + 16 + 4 + 1 = <strong>181</strong></p>
+
+    <div style="font-size:15pt;font-weight:700;color:#007BA6;margin-bottom:8px;">Denary &rarr; binary</div>
+    <p style="margin:0 0 10px;">Work from the <strong>largest place value</strong> to the smallest. If the place value fits into what is left, write 1 and subtract it; if not, write 0.</p>
+    <div style="overflow-x:auto;margin-bottom:14px;">
+      <table class="cx-tbl c" style="min-width:560px;font-size:12.5pt;">
+        <tr><th>Place value</th><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+        <tr><td><strong>Working (start: 100)</strong></td><td>Too big</td><td>100&minus;64 = 36</td><td>36&minus;32 = 4</td><td>Too big</td><td>Too big</td><td>4&minus;4 = 0</td><td>Too big</td><td>Too big</td></tr>
+        <tr><td><strong>Bit</strong></td><td class="mono">0</td><td class="mono">1</td><td class="mono">1</td><td class="mono">0</td><td class="mono">0</td><td class="mono">1</td><td class="mono">0</td><td class="mono">0</td></tr>
+      </table>
+    </div>
+    <p style="margin:0 0 14px;font-size:13pt;">So <strong>100<sub>10</sub> = 01100100<sub>2</sub></strong>. Check by converting back: 64 + 32 + 4 = 100 &#10003;</p>
+    <div class="g2">
+      <div style="border-left:4px solid #e65100;background:#fff3e0;padding:12px 16px;border-radius:0 6px 6px 0;font-size:13pt;"><strong style="color:#e65100;">Range:</strong> with 8 bits the smallest unsigned integer is <span class="mono">00000000</span> = 0 and the largest is <span class="mono">11111111</span> = 255.</div>
+      <div style="border-left:4px solid #9966FF;background:#f3e5f5;padding:12px 16px;border-radius:0 6px 6px 0;font-size:13pt;"><strong style="color:#9966FF;">Pattern:</strong> adding a 0 on the right of a binary number shifts every bit one place left, which <strong>doubles</strong> its value — just as adding a 0 in denary multiplies by 10.</div>
+    </div>
+  </div>
+
+  <!-- Activity 4 — binary explorer -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#128161; Activity 4 — Binary explorer: hit the targets</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:12px;line-height:1.5;">Click the bits to switch them on and off. Make each target number in turn.</div>
+    <div class="explorer">
+      <div style="text-align:center;margin-bottom:12px;" id="targets4"></div>
+      <div class="bits" id="bits4"></div>
+      <div class="ex-out">Denary value: <span id="val4">0</span></div>
+    </div>
+    <div class="fb" id="fb4"></div>
+  </div>
+
+  <!-- Activity 5 — number inputs binary→denary -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#9998; Activity 5 — Convert binary to denary</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:12px;">Type the denary value of each binary number.</div>
+    <div id="num5">
+      <div class="num-row"><div class="num-q"><span class="mono">00001101</span></div><input class="num" data-ans="13" data-hint="00001101 = 8 + 4 + 1 = 13."></div>
+      <div class="num-row"><div class="num-q"><span class="mono">01010101</span></div><input class="num" data-ans="85" data-hint="01010101 = 64 + 16 + 4 + 1 = 85."></div>
+      <div class="num-row"><div class="num-q"><span class="mono">10010110</span></div><input class="num" data-ans="150" data-hint="10010110 = 128 + 16 + 4 + 2 = 150."></div>
+      <div class="num-row"><div class="num-q"><span class="mono">11111111</span></div><input class="num" data-ans="255" data-hint="11111111 = 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = 255."></div>
+    </div>
+    <button class="check-btn" id="btn5" onclick="checkNums(5)">&#10003; Check my answers</button>
+    <div class="drag-result" id="res5"></div>
+  </div>
+
+  <!-- Activity 6 — drag denary→binary -->
+  <div class="act" data-n="6" style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#9707; Activity 6 — Convert denary 89 to binary</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:6px;line-height:1.5;">Drag a 0 or 1 under each place value to make <strong>89</strong>. Two chips are not needed.</div>
+    <div class="tap-tip">Tip: you can also tap a chip and then tap a gap to place it.</div>
+    <div class="drag-bank" id="bank6">
+      <div class="drag-chip" draggable="true">1</div><div class="drag-chip" draggable="true">0</div><div class="drag-chip" draggable="true">1</div><div class="drag-chip" draggable="true">0</div><div class="drag-chip" draggable="true">1</div>
+      <div class="drag-chip" draggable="true">0</div><div class="drag-chip" draggable="true">1</div><div class="drag-chip" draggable="true">0</div><div class="drag-chip" draggable="true">1</div><div class="drag-chip" draggable="true">0</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <div class="pv" style="min-width:520px;">
+        <div><div class="h">128</div><div class="b"><span id="dz6a" class="drop-zone"></span></div></div>
+        <div><div class="h">64</div><div class="b"><span id="dz6b" class="drop-zone"></span></div></div>
+        <div><div class="h">32</div><div class="b"><span id="dz6c" class="drop-zone"></span></div></div>
+        <div><div class="h">16</div><div class="b"><span id="dz6d" class="drop-zone"></span></div></div>
+        <div><div class="h">8</div><div class="b"><span id="dz6e" class="drop-zone"></span></div></div>
+        <div><div class="h">4</div><div class="b"><span id="dz6f" class="drop-zone"></span></div></div>
+        <div><div class="h">2</div><div class="b"><span id="dz6g" class="drop-zone"></span></div></div>
+        <div><div class="h">1</div><div class="b"><span id="dz6h" class="drop-zone"></span></div></div>
+      </div>
+    </div>
+    <button class="check-btn" id="btn6" onclick="checkDrop6()">&#10003; Check my binary</button>
+    <div class="drag-result" id="res6"></div>
+  </div>
+
+  <!-- Activity 7 — MCQ correct=c -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#10003; Activity 7 — Multiple choice</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:14px;line-height:1.5;">The binary number <span class="mono">0011 0010</span> is 50 in denary. What is <span class="mono">0110 0100</span> (the same bits moved one place to the left)?</div>
+    <div id="opts7">
+      <div class="opt" onclick="pickOpt(7,'a',this)">a) 51</div>
+      <div class="opt" onclick="pickOpt(7,'b',this)">b) 25</div>
+      <div class="opt" onclick="pickOpt(7,'c',this)">c) 100</div>
+      <div class="opt" onclick="pickOpt(7,'d',this)">d) 500</div>
+    </div>
+    <div class="fb" id="fb7"></div>
+  </div>
+</div>
+
+<!-- ═══════════════ SECTION 3 — HEXADECIMAL ═══════════════ -->
+<div style="margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid #d0d0d0;">
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid #007BA6;">
+    <div style="min-width:36px;height:36px;border-radius:50%;background:#007BA6;color:#fff;font-size:14pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+    <div style="font-size:18pt;font-weight:700;color:#007BA6;">Hexadecimal Conversions</div>
+    <div style="margin-left:auto;font-size:10pt;font-weight:700;color:#007BA6;background:#e3f2fd;padding:4px 12px;border-radius:20px;white-space:nowrap;border:1px solid #b3d4e8;flex-shrink:0;">&#9679; ~15 minutes</div>
+  </div>
+
+  <div style="background:#fff;border:1px solid #d0d0d0;border-radius:6px;padding:20px 24px;margin-bottom:18px;">
+    <div class="g2" style="margin-bottom:16px;align-items:start;">
+      <div style="background:#e3f2fd;border-radius:8px;padding:14px 16px;font-size:13pt;">
+        <div style="font-weight:700;color:#007BA6;font-size:14pt;margin-bottom:6px;">Hex &rarr; denary</div>
+        Multiply each digit by its place value (16s and 1s), then add.<br>
+        <span class="mono">3E</span> = 3 &times; 16 + 14 &times; 1 = 48 + 14 = <strong>62</strong>
+      </div>
+      <div style="background:#e8f5e9;border-radius:8px;padding:14px 16px;font-size:13pt;">
+        <div style="font-weight:700;color:#388e3c;font-size:14pt;margin-bottom:6px;">Denary &rarr; hex</div>
+        Divide by 16. The answer is the 16s digit; the remainder is the 1s digit.<br>
+        200 &divide; 16 = 12 remainder 8 &rarr; 12 is C, so <strong>200 = C8</strong>
+      </div>
+    </div>
+    <div style="font-size:15pt;font-weight:700;color:#007BA6;margin-bottom:8px;">Hex &harr; binary: use nibbles</div>
+    <p style="margin:0 0 10px;">One hex digit stands for exactly <strong>4 bits</strong> (a <strong>nibble</strong>), because 4 bits give 16 combinations. So you never need to go through denary:</p>
+    <div class="g2" style="margin-bottom:14px;">
+      <div style="background:#f3e5f5;border-radius:8px;padding:14px 16px;font-size:13pt;"><strong style="color:#9966FF;">Binary &rarr; hex</strong><br>Split into nibbles from the right, convert each nibble.<br><span class="mono">1101 0111</span> &rarr; <span class="mono">D 7</span> = <strong>D7</strong></div>
+      <div style="background:#f3e5f5;border-radius:8px;padding:14px 16px;font-size:13pt;"><strong style="color:#9966FF;">Hex &rarr; binary</strong><br>Write each hex digit as a 4-bit nibble.<br><span class="mono">4A</span> &rarr; <span class="mono">0100 1010</span></div>
+    </div>
+    <div class="g2" style="margin-bottom:14px;">
+      <div style="background:#e8f5e9;border-radius:8px;padding:14px 16px;font-size:13pt;"><strong style="color:#388e3c;">Benefits of hex</strong><ul style="margin:6px 0 0;padding-left:1.2em;"><li>Much shorter: 8 bits become 2 hex digits</li><li>Easier for people to read, remember and type</li><li>Fewer mistakes than long strings of 0s and 1s</li><li>Converts directly to and from binary</li></ul></div>
+      <div style="background:#fff3e0;border-radius:8px;padding:14px 16px;font-size:13pt;"><strong style="color:#e65100;">Where you see hex</strong><ul style="margin:6px 0 0;padding-left:1.2em;"><li>Colour codes in HTML/CSS, e.g. <span class="mono">#007BA6</span></li><li>Memory addresses when debugging</li><li>MAC addresses, e.g. <span class="mono">3C:22:FB:9A:01:7E</span></li><li>Error codes</li></ul></div>
+    </div>
+    <div style="border-left:4px solid #e65100;background:#fff3e0;padding:12px 16px;border-radius:0 6px 6px 0;font-size:13pt;">
+      <strong style="color:#e65100;">Remember:</strong> hex does <strong>not</strong> save memory or make the computer faster. The value is stored in binary either way. Hex only makes binary easier for <em>people</em> to work with.
+    </div>
+  </div>
+
+  <!-- Activity 8 — hex→denary -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#9998; Activity 8 — Convert between hex and denary</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:12px;">Type each answer. For hex answers, use capital letters.</div>
+    <div id="num8">
+      <div class="num-row"><div class="num-q"><span class="mono">2F</span> in denary</div><input class="num" data-ans="47" data-hint="2F = 2 &times; 16 + 15 = 47."></div>
+      <div class="num-row"><div class="num-q"><span class="mono">A0</span> in denary</div><input class="num" data-ans="160" data-hint="A0 = 10 &times; 16 + 0 = 160."></div>
+      <div class="num-row"><div class="num-q">123 in hex</div><input class="num" data-ans="7B" data-hint="123 &divide; 16 = 7 remainder 11, and 11 is B, so 7B."></div>
+      <div class="num-row"><div class="num-q">255 in hex</div><input class="num" data-ans="FF" data-hint="255 &divide; 16 = 15 remainder 15, and 15 is F, so FF."></div>
+    </div>
+    <button class="check-btn" id="btn8" onclick="checkNums(8)">&#10003; Check my answers</button>
+    <div class="drag-result" id="res8"></div>
+  </div>
+
+  <!-- Activity 9 — drag nibbles -->
+  <div class="act" data-n="9" style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#9707; Activity 9 — Convert using nibbles</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:6px;line-height:1.5;">Drag the correct chip into each gap. Four chips are not needed.</div>
+    <div class="drag-bank" id="bank9">
+      <div class="drag-chip" draggable="true">1100</div><div class="drag-chip" draggable="true">B</div><div class="drag-chip" draggable="true">0110</div><div class="drag-chip" draggable="true">11</div>
+      <div class="drag-chip" draggable="true">0011</div><div class="drag-chip" draggable="true">A</div><div class="drag-chip" draggable="true">6</div><div class="drag-chip" draggable="true">1101</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="cx-tbl c" style="background:#fff;min-width:560px;">
+        <tr><th>Question</th><th>First nibble</th><th>Second nibble</th></tr>
+        <tr><td>Binary <span class="mono">1011 0110</span> &rarr; hex</td><td><span id="dz9a" class="drop-zone" style="min-width:90px;"></span></td><td><span id="dz9b" class="drop-zone" style="min-width:90px;"></span></td></tr>
+        <tr><td>Hex <span class="mono">3C</span> &rarr; binary</td><td><span id="dz9c" class="drop-zone" style="min-width:90px;"></span></td><td><span id="dz9d" class="drop-zone" style="min-width:90px;"></span></td></tr>
+      </table>
+    </div>
+    <button class="check-btn" id="btn9" onclick="checkDrop9()">&#10003; Check my answers</button>
+    <div class="drag-result" id="res9"></div>
+  </div>
+
+  <!-- Activity 10 — MCQ correct=a -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#10003; Activity 10 — Multiple choice</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:14px;line-height:1.5;">A web developer writes the colour <span class="mono">#FF8800</span> rather than its 24-bit binary value. What is the main reason?</div>
+    <div id="opts10">
+      <div class="opt" onclick="pickOpt(10,'a',this)">a) Hex is shorter and easier for a person to read and type correctly, and each digit maps directly to 4 bits</div>
+      <div class="opt" onclick="pickOpt(10,'b',this)">b) Storing the colour in hex uses less memory than storing it in binary</div>
+      <div class="opt" onclick="pickOpt(10,'c',this)">c) The computer processes hex faster than binary</div>
+      <div class="opt" onclick="pickOpt(10,'d',this)">d) Binary cannot represent colours</div>
+    </div>
+    <div class="fb" id="fb10"></div>
+  </div>
+
+  <!-- Activity 11 — word chip correct=b -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#9998; Activity 11 — Fill in the gap</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:16px;line-height:1.6;">One hexadecimal digit represents exactly <span style="background:#1e1e2e;color:#fab387;font-family:'Courier New',monospace;padding:2px 10px;border-radius:4px;font-size:13pt;">&#9744;</span> bits.</div>
+    <div id="opts11w">
+      <span class="wopt" onclick="pickWopt(11,'a',this)">2</span>
+      <span class="wopt" onclick="pickWopt(11,'b',this)">4</span>
+      <span class="wopt" onclick="pickWopt(11,'c',this)">8</span>
+      <span class="wopt" onclick="pickWopt(11,'d',this)">16</span>
+    </div>
+    <div class="fb" id="fb11"></div>
+  </div>
+</div>
+
+<!-- ═══════════════ SECTION 4 — BITS, NIBBLES, BYTES & STATES ═══════════════ -->
+<div style="margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid #d0d0d0;">
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid #007BA6;">
+    <div style="min-width:36px;height:36px;border-radius:50%;background:#007BA6;color:#fff;font-size:14pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+    <div style="font-size:18pt;font-weight:700;color:#007BA6;">Bits, Nibbles, Bytes &amp; Number of States</div>
+    <div style="margin-left:auto;font-size:10pt;font-weight:700;color:#007BA6;background:#e3f2fd;padding:4px 12px;border-radius:20px;white-space:nowrap;border:1px solid #b3d4e8;flex-shrink:0;">&#9679; ~15 minutes</div>
+  </div>
+
+  <div style="background:#fff;border:1px solid #d0d0d0;border-radius:6px;padding:20px 24px;margin-bottom:18px;">
+    <div class="g3" style="margin-bottom:16px;">
+      <div style="background:#e3f2fd;border-radius:8px;padding:14px 16px;border-top:4px solid #007BA6;font-size:13pt;"><div style="font-weight:700;color:#007BA6;font-size:15pt;">Bit (b)</div>A single <strong>bi</strong>nary digi<strong>t</strong>: 0 or 1. The smallest unit of data. Symbol: lower-case <strong>b</strong>.</div>
+      <div style="background:#e8f5e9;border-radius:8px;padding:14px 16px;border-top:4px solid #388e3c;font-size:13pt;"><div style="font-weight:700;color:#388e3c;font-size:15pt;">Nibble</div><strong>4 bits</strong>. Half a byte, and exactly one hex digit, e.g. <span class="mono">1010</span> = A.</div>
+      <div style="background:#f3e5f5;border-radius:8px;padding:14px 16px;border-top:4px solid #9966FF;font-size:13pt;"><div style="font-weight:700;color:#9966FF;font-size:15pt;">Byte (B)</div><strong>8 bits</strong>. The basic unit for storing data, e.g. one ASCII character. Symbol: capital <strong>B</strong>.</div>
+    </div>
+    <div style="border-left:4px solid #C62828;background:#ffebee;padding:12px 16px;border-radius:0 6px 6px 0;margin-bottom:18px;font-size:13pt;">
+      <strong style="color:#C62828;">b or B?</strong> Lower-case <strong>b</strong> means bits; capital <strong>B</strong> means bytes. 8 Mb is only 1 MB! Network speeds are usually given in bits per second (e.g. Mbps), file sizes in bytes.
+    </div>
+
+    <div style="font-size:15pt;font-weight:700;color:#007BA6;margin-bottom:8px;">How many states can n bits represent?</div>
+    <p style="margin:0 0 10px;">Each extra bit <strong>doubles</strong> the number of different patterns, so <strong>n bits can represent 2<sup>n</sup> states</strong>.</p>
+    <div style="overflow-x:auto;margin-bottom:12px;">
+      <table class="cx-tbl c" style="min-width:560px;">
+        <tr><th>Bits (n)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>8</th><th>16</th></tr>
+        <tr><td><strong>States (2<sup>n</sup>)</strong></td><td>2</td><td>4</td><td>8</td><td>16</td><td>256</td><td>65 536</td></tr>
+        <tr><td><strong>Largest unsigned value (2<sup>n</sup> &minus; 1)</strong></td><td>1</td><td>3</td><td>7</td><td>15</td><td>255</td><td>65 535</td></tr>
+      </table>
+    </div>
+    <p style="margin:0 0 12px;font-size:13pt;">With 2 bits the four states are <span class="mono">00, 01, 10, 11</span>. The largest value is one less than the number of states because counting starts at 0.</p>
+    <div style="border-left:4px solid #e65100;background:#fff3e0;padding:12px 16px;border-radius:0 6px 6px 0;font-size:13pt;">
+      <strong style="color:#e65100;">Working backwards:</strong> to find how many bits you need for a number of states, find the smallest power of 2 that is <strong>big enough</strong>. For 50 different values: 2<sup>5</sup> = 32 is too small, 2<sup>6</sup> = 64 is enough, so you need <strong>6 bits</strong>.
+    </div>
+  </div>
+
+  <!-- Activity 12 — rank units -->
+  <div class="act" data-n="12" style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#8645; Activity 12 — Rank the units in size order</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:6px;line-height:1.5;">Drag the units into order from <strong>smallest</strong> (1) to <strong>largest</strong> (7).</div>
+    <div class="drag-bank" id="bank12">
+      <div class="drag-chip" draggable="true">gibibyte</div><div class="drag-chip" draggable="true">bit</div><div class="drag-chip" draggable="true">kibibyte</div><div class="drag-chip" draggable="true">tebibyte</div>
+      <div class="drag-chip" draggable="true">byte</div><div class="drag-chip" draggable="true">mebibyte</div><div class="drag-chip" draggable="true">nibble</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="cx-tbl c" style="background:#fff;min-width:640px;">
+        <tr><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th></tr>
+        <tr>
+          <td><span id="dz12a" class="drop-zone" style="min-width:80px;"></span></td><td><span id="dz12b" class="drop-zone" style="min-width:80px;"></span></td><td><span id="dz12c" class="drop-zone" style="min-width:80px;"></span></td><td><span id="dz12d" class="drop-zone" style="min-width:80px;"></span></td>
+          <td><span id="dz12e" class="drop-zone" style="min-width:80px;"></span></td><td><span id="dz12f" class="drop-zone" style="min-width:80px;"></span></td><td><span id="dz12g" class="drop-zone" style="min-width:80px;"></span></td>
+        </tr>
+      </table>
+    </div>
+    <button class="check-btn" id="btn12" onclick="checkDrop12()">&#10003; Check my order</button>
+    <div class="drag-result" id="res12"></div>
+  </div>
+
+  <!-- Activity 13 — states -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#9998; Activity 13 — Calculate the number of states</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:12px;">Type each answer as a number.</div>
+    <div id="num13">
+      <div class="num-row"><div class="num-q">How many states can <strong>5 bits</strong> represent?</div><input class="num" data-ans="32" data-hint="2<sup>5</sup> = 32."></div>
+      <div class="num-row"><div class="num-q">How many states can <strong>10 bits</strong> represent?</div><input class="num" data-ans="1024" data-hint="2<sup>10</sup> = 1024."></div>
+      <div class="num-row"><div class="num-q">What is the largest unsigned integer in <strong>6 bits</strong>?</div><input class="num" data-ans="63" data-hint="6 bits give 2<sup>6</sup> = 64 states, so the largest value is 64 &minus; 1 = 63."></div>
+      <div class="num-row"><div class="num-q">A school has <strong>100</strong> classrooms. What is the <em>fewest</em> bits needed to give each one a unique number?</div><input class="num" data-ans="7" data-hint="2<sup>6</sup> = 64 is too few; 2<sup>7</sup> = 128 is enough, so 7 bits."></div>
+    </div>
+    <button class="check-btn" id="btn13" onclick="checkNums(13)">&#10003; Check my answers</button>
+    <div class="drag-result" id="res13"></div>
+  </div>
+
+  <!-- Activity 14 — MCQ correct=c -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#10003; Activity 14 — Multiple choice</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:14px;line-height:1.5;">A games console stores each player's level in one byte as an unsigned integer. How many different levels can be stored, and what is the highest level number?</div>
+    <div id="opts14">
+      <div class="opt" onclick="pickOpt(14,'a',this)">a) 255 levels, highest is 255</div>
+      <div class="opt" onclick="pickOpt(14,'b',this)">b) 256 levels, highest is 256</div>
+      <div class="opt" onclick="pickOpt(14,'c',this)">c) 256 levels, highest is 255</div>
+      <div class="opt" onclick="pickOpt(14,'d',this)">d) 8 levels, highest is 7</div>
+    </div>
+    <div class="fb" id="fb14"></div>
+  </div>
+
+  <!-- Activity 15 — TF -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#10003; Activity 15 — True or False?</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:14px;">Click True or False for each statement.</div>
+    <div class="tf-row" id="tf5">
+      <div class="tf-stmt">A byte is made of two nibbles.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(5,true,true)">True</button><button class="tf-btn" onclick="doTF(5,false,true)">False</button></div>
+    </div>
+    <div class="tf-row" id="tf6">
+      <div class="tf-stmt">Adding one more bit adds one more state.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(6,true,false)">True</button><button class="tf-btn" onclick="doTF(6,false,false)">False</button></div>
+    </div>
+    <div class="tf-row" id="tf7">
+      <div class="tf-stmt">16 Mb and 16 MB describe the same amount of data.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(7,true,false)">True</button><button class="tf-btn" onclick="doTF(7,false,false)">False</button></div>
+    </div>
+    <div class="tf-row" id="tf8">
+      <div class="tf-stmt">A 4-bit nibble can represent the denary numbers 0 to 15.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(8,true,true)">True</button><button class="tf-btn" onclick="doTF(8,false,true)">False</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SECTION 5 — PREFIXES ═══════════════ -->
+<div style="margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid #d0d0d0;">
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid #007BA6;">
+    <div style="min-width:36px;height:36px;border-radius:50%;background:#007BA6;color:#fff;font-size:14pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</div>
+    <div style="font-size:18pt;font-weight:700;color:#007BA6;">Binary (IEC) and Decimal (SI) Prefixes</div>
+    <div style="margin-left:auto;font-size:10pt;font-weight:700;color:#007BA6;background:#e3f2fd;padding:4px 12px;border-radius:20px;white-space:nowrap;border:1px solid #b3d4e8;flex-shrink:0;">&#9679; ~15 minutes</div>
+  </div>
+
+  <div style="background:#fff;border:1px solid #d0d0d0;border-radius:6px;padding:20px 24px;margin-bottom:18px;">
+    <p style="margin:0 0 14px;">Large amounts of data need prefixes, just like "kilo" in kilometre. There are <strong>two sets</strong> of prefixes, and they are <strong>not the same size</strong>:</p>
+    <div style="overflow-x:auto;margin-bottom:16px;">
+      <table class="cx-tbl c" style="min-width:640px;">
+        <tr><th colspan="3">IEC binary prefixes (powers of 2)</th><th colspan="3">SI decimal prefixes (powers of 10)</th></tr>
+        <tr><td><strong>kibi (Ki)</strong></td><td>2<sup>10</sup></td><td>1024</td><td><strong>kilo (k)</strong></td><td>10<sup>3</sup></td><td>1000</td></tr>
+        <tr><td><strong>mebi (Mi)</strong></td><td>2<sup>20</sup></td><td>1 048 576</td><td><strong>mega (M)</strong></td><td>10<sup>6</sup></td><td>1 000 000</td></tr>
+        <tr><td><strong>gibi (Gi)</strong></td><td>2<sup>30</sup></td><td>1 073 741 824</td><td><strong>giga (G)</strong></td><td>10<sup>9</sup></td><td>1 000 000 000</td></tr>
+        <tr><td><strong>tebi (Ti)</strong></td><td>2<sup>40</sup></td><td>&asymp; 1.1 &times; 10<sup>12</sup></td><td><strong>tera (T)</strong></td><td>10<sup>12</sup></td><td>1 000 000 000 000</td></tr>
+      </table>
+    </div>
+    <p style="margin:0 0 14px;font-size:13pt;">Each binary prefix is <strong>1024 times</strong> the one before (1 MiB = 1024 KiB). Each decimal prefix is <strong>1000 times</strong> the one before (1 MB = 1000 kB). The specification writes kilo as K; you will also see a lower-case k.</p>
+
+    <div class="g2" style="margin-bottom:16px;">
+      <div style="background:#e3f2fd;border-radius:8px;padding:14px 16px;font-size:13pt;border-top:4px solid #007BA6;">
+        <strong style="color:#007BA6;font-size:14pt;">Use binary prefixes for…</strong><br><strong>data capacity and file sizes</strong> — RAM, storage and files, e.g. 16 GiB of RAM, a 3.2 MiB photo. Memory is addressed in powers of 2, so the sizes come out as exact, whole numbers.
+        <div style="margin-top:8px;"><strong style="color:#388e3c;">Benefit:</strong> accurate for memory. <strong style="color:#C62828;">Drawback:</strong> less familiar; many people and some software still write "KB" when they mean 1024 bytes.</div>
+      </div>
+      <div style="background:#e8f5e9;border-radius:8px;padding:14px 16px;font-size:13pt;border-top:4px solid #388e3c;">
+        <strong style="color:#388e3c;font-size:14pt;">Use decimal prefixes for…</strong><br><strong>transmission speeds</strong> — e.g. a 100 Mbps broadband connection is 100 000 000 bits per second. Storage manufacturers also label drives in decimal units.
+        <div style="margin-top:8px;"><strong style="color:#388e3c;">Benefit:</strong> familiar round numbers that match the metric system. <strong style="color:#C62828;">Drawback:</strong> do not match memory sizes, which causes confusion.</div>
+      </div>
+    </div>
+    <div style="border-left:4px solid #9966FF;background:#f3e5f5;padding:12px 16px;border-radius:0 6px 6px 0;font-size:13pt;">
+      <strong style="color:#9966FF;">Why the difference grows:</strong> 1 KiB is only 2.4% bigger than 1 kB, but 1 TiB is about 10% bigger than 1 TB. That is why a new "1 TB" drive shows up as only about 931 GiB on a computer.
+    </div>
+  </div>
+
+  <!-- Activity 16 — sort IEC/SI -->
+  <div class="act" data-n="16" style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#8644; Activity 16 — Sort: binary (IEC) or decimal (SI)?</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:6px;line-height:1.5;">Drag each statement into the set of prefixes it describes.</div>
+    <div class="drag-bank long-chips" id="bank16">
+      <div class="drag-chip" draggable="true">Based on powers of 2</div>
+      <div class="drag-chip" draggable="true">1 kilo = 1000</div>
+      <div class="drag-chip" draggable="true">Used for file sizes and memory capacity</div>
+      <div class="drag-chip" draggable="true">Based on powers of 10</div>
+      <div class="drag-chip" draggable="true">1 kibi = 1024</div>
+      <div class="drag-chip" draggable="true">Used for network transmission speeds</div>
+      <div class="drag-chip" draggable="true">Symbols Ki, Mi, Gi, Ti</div>
+      <div class="drag-chip" draggable="true">Symbols k, M, G, T</div>
+    </div>
+    <div class="g2" style="margin-bottom:12px;">
+      <div>
+        <div style="font-size:13pt;font-weight:700;color:#007BA6;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;text-align:center;">IEC binary</div>
+        <div id="sort16-iec" class="sort-zone drag-bank" style="border-color:#007BA6;background:#f0f8ff;min-height:140px;"></div>
+      </div>
+      <div>
+        <div style="font-size:13pt;font-weight:700;color:#388e3c;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;text-align:center;">SI decimal</div>
+        <div id="sort16-si" class="sort-zone drag-bank" style="border-color:#388e3c;background:#f0f8f0;min-height:140px;"></div>
+      </div>
+    </div>
+    <button class="check-btn" id="btn16" onclick="checkSort16()">&#10003; Check my sort</button>
+    <div class="drag-result" id="res16"></div>
+  </div>
+
+  <!-- Activity 17 — match prefixes -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#9654; Activity 17 — Match each prefix to its value</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:14px;">Use the dropdowns. One value is not needed.</div>
+    <div id="match2">
+      <div class="match-row"><div class="match-term">kibi (Ki)</div><select class="match-sel" data-ans="p10"></select></div>
+      <div class="match-row"><div class="match-term">mebi (Mi)</div><select class="match-sel" data-ans="p20"></select></div>
+      <div class="match-row"><div class="match-term">gibi (Gi)</div><select class="match-sel" data-ans="p30"></select></div>
+      <div class="match-row"><div class="match-term">tebi (Ti)</div><select class="match-sel" data-ans="p40"></select></div>
+      <div class="match-row"><div class="match-term">kilo (k)</div><select class="match-sel" data-ans="t3"></select></div>
+      <div class="match-row"><div class="match-term">mega (M)</div><select class="match-sel" data-ans="t6"></select></div>
+      <div class="match-row"><div class="match-term">giga (G)</div><select class="match-sel" data-ans="t9"></select></div>
+      <div class="match-row"><div class="match-term">tera (T)</div><select class="match-sel" data-ans="t12"></select></div>
+    </div>
+    <button class="match-btn" id="match2-btn" onclick="checkMatch2()">&#10003; Check my answers</button>
+    <div class="match-result" id="match2-res"></div>
+  </div>
+
+  <!-- Activity 18 — MCQ correct=d -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#10003; Activity 18 — Multiple choice</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:14px;line-height:1.5;">Sam buys an external drive labelled <strong>1 TB</strong>. When plugged in, the computer reports about <strong>931 GiB</strong>. Why?</div>
+    <div id="opts18">
+      <div class="opt" onclick="pickOpt(18,'a',this)">a) About 69 GiB is faulty and has been disabled</div>
+      <div class="opt" onclick="pickOpt(18,'b',this)">b) The operating system files have used up the missing space</div>
+      <div class="opt" onclick="pickOpt(18,'c',this)">c) The computer reports in bits instead of bytes</div>
+      <div class="opt" onclick="pickOpt(18,'d',this)">d) The maker uses decimal units (10<sup>12</sup> bytes) but the computer reports binary units (1 GiB = 2<sup>30</sup> bytes), so the same amount of space gives a smaller number</div>
+    </div>
+    <div class="fb" id="fb18"></div>
+  </div>
+</div>
+
+<!-- ═══════════════ SECTION 6 — CONVERTING & CALCULATING ═══════════════ -->
+<div style="margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid #d0d0d0;">
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid #007BA6;">
+    <div style="min-width:36px;height:36px;border-radius:50%;background:#007BA6;color:#fff;font-size:14pt;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">6</div>
+    <div style="font-size:18pt;font-weight:700;color:#007BA6;">Converting and Calculating with Units</div>
+    <div style="margin-left:auto;font-size:10pt;font-weight:700;color:#007BA6;background:#e3f2fd;padding:4px 12px;border-radius:20px;white-space:nowrap;border:1px solid #b3d4e8;flex-shrink:0;">&#9679; ~15 minutes</div>
+  </div>
+
+  <div style="background:#fff;border:1px solid #d0d0d0;border-radius:6px;padding:20px 24px;margin-bottom:18px;">
+    <div class="g2" style="margin-bottom:16px;align-items:start;">
+      <div>
+        <div style="font-size:14pt;font-weight:700;color:#007BA6;margin-bottom:6px;">Binary units ladder</div>
+        <table class="cx-tbl c" style="font-size:12.5pt;">
+          <tr><td>bit</td><td>&times; 8 &rarr;</td><td>byte</td></tr>
+          <tr><td>byte</td><td>&times; 1024 &rarr;</td><td>KiB</td></tr>
+          <tr><td>KiB</td><td>&times; 1024 &rarr;</td><td>MiB</td></tr>
+          <tr><td>MiB</td><td>&times; 1024 &rarr;</td><td>GiB</td></tr>
+          <tr><td>GiB</td><td>&times; 1024 &rarr;</td><td>TiB</td></tr>
+        </table>
+        <p style="margin:8px 0 0;font-size:12.5pt;">Going to a <strong>bigger</strong> unit: <strong>divide</strong>. Going to a <strong>smaller</strong> unit: <strong>multiply</strong>. For decimal units, use 1000 instead of 1024.</p>
+      </div>
+      <div style="font-size:13pt;">
+        <div style="font-size:14pt;font-weight:700;color:#007BA6;margin-bottom:6px;">Worked examples</div>
+        <p style="margin:0 0 8px;"><strong>5 MiB in KiB:</strong> 5 &times; 1024 = <strong>5120 KiB</strong></p>
+        <p style="margin:0 0 8px;"><strong>6144 MiB in GiB:</strong> 6144 &divide; 1024 = <strong>6 GiB</strong></p>
+        <p style="margin:0 0 8px;"><strong>3 KiB in bits:</strong> 3 &times; 1024 &times; 8 = <strong>24 576 bits</strong></p>
+        <p style="margin:0;"><strong>Writing expressions:</strong> 4 GiB = 4 &times; 2<sup>30</sup> bytes; 2 TB = 2 &times; 10<sup>12</sup> bytes.</p>
+      </div>
+    </div>
+    <div style="font-size:15pt;font-weight:700;color:#007BA6;margin-bottom:8px;">Download time = file size in bits &divide; speed in bits per second</div>
+    <div style="background:#e3f2fd;border-radius:8px;padding:12px 16px;font-size:13pt;margin-bottom:14px;">
+      How long does a <strong>2 MiB</strong> file take on a <strong>8 Mbps</strong> connection?<br>
+      1. File size in bits: 2 &times; 2<sup>20</sup> &times; 8 = 16 777 216 bits<br>
+      2. Speed: 8 Mbps = 8 &times; 10<sup>6</sup> = 8 000 000 bits per second<br>
+      3. Time = 16 777 216 &divide; 8 000 000 &asymp; <strong>2.1 seconds</strong>
+    </div>
+    <div style="border-left:4px solid #e65100;background:#fff3e0;padding:12px 16px;border-radius:0 6px 6px 0;font-size:13pt;">
+      <strong style="color:#e65100;">Common mistakes:</strong> forgetting to &times; 8 to turn bytes into bits; using 1000 for a binary prefix (or 1024 for a decimal one); and mixing up b and B.
+    </div>
+  </div>
+
+  <!-- Activity 19 — conversions -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#9998; Activity 19 — Convert between units</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:12px;">Type each answer as a number (no units).</div>
+    <div id="num19">
+      <div class="num-row"><div class="num-q">3 MiB = ? KiB</div><input class="num" data-ans="3072" data-hint="3 MiB in KiB: going to a smaller unit, so 3 &times; 1024 = 3072."></div>
+      <div class="num-row"><div class="num-q">4096 KiB = ? MiB</div><input class="num" data-ans="4" data-hint="4096 KiB in MiB: going to a bigger unit, so 4096 &divide; 1024 = 4."></div>
+      <div class="num-row"><div class="num-q">2 GiB = ? MiB</div><input class="num" data-ans="2048" data-hint="2 GiB in MiB: 2 &times; 1024 = 2048."></div>
+      <div class="num-row"><div class="num-q">5 kB = ? bytes</div><input class="num" data-ans="5000" data-hint="5 kB is a decimal prefix, so 5 &times; 1000 = 5000 bytes."></div>
+      <div class="num-row"><div class="num-q">48 bits = ? bytes</div><input class="num" data-ans="6" data-hint="48 bits in bytes: 48 &divide; 8 = 6."></div>
+      <div class="num-row"><div class="num-q">2 KiB = ? bits</div><input class="num" data-ans="16384" data-hint="2 KiB in bits: 2 &times; 1024 = 2048 bytes, then &times; 8 = 16 384 bits."></div>
+    </div>
+    <button class="check-btn" id="btn19" onclick="checkNums(19)">&#10003; Check my answers</button>
+    <div class="drag-result" id="res19"></div>
+  </div>
+
+  <!-- Activity 20 — MCQ expression correct=b -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#10003; Activity 20 — Multiple choice — interpret the expression</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:14px;line-height:1.5;">Which expression gives the number of <strong>bits</strong> in a <strong>3 GiB</strong> file?</div>
+    <div id="opts20">
+      <div class="opt" onclick="pickOpt(20,'a',this)">a) 3 &times; 10<sup>9</sup> &times; 8</div>
+      <div class="opt" onclick="pickOpt(20,'b',this)">b) 3 &times; 2<sup>30</sup> &times; 8</div>
+      <div class="opt" onclick="pickOpt(20,'c',this)">c) 3 &times; 2<sup>30</sup></div>
+      <div class="opt" onclick="pickOpt(20,'d',this)">d) 3 &times; 2<sup>10</sup> &times; 8</div>
+    </div>
+    <div class="fb" id="fb20"></div>
+  </div>
+
+  <!-- Activity 21 — MCQ download correct=c -->
+  <div style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;margin-bottom:18px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#10003; Activity 21 — Multiple choice — calculate</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:14px;line-height:1.5;">A <strong>25 MiB</strong> video is sent over a <strong>10 Mbps</strong> connection. Roughly how long does it take? Work it out on paper first.</div>
+    <div id="opts21">
+      <div class="opt" onclick="pickOpt(21,'a',this)">a) About 2.6 seconds</div>
+      <div class="opt" onclick="pickOpt(21,'b',this)">b) Exactly 20 seconds</div>
+      <div class="opt" onclick="pickOpt(21,'c',this)">c) About 21 seconds</div>
+      <div class="opt" onclick="pickOpt(21,'d',this)">d) About 0.4 seconds</div>
+    </div>
+    <div class="fb" id="fb21"></div>
+  </div>
+
+  <!-- Activity 22 — paragraph -->
+  <div class="act" data-n="22" style="background:#fafafa;border:1px solid #d0d0d0;border-radius:6px;padding:18px 22px;">
+    <div style="font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#00796B;margin-bottom:10px;">&#9998; Activity 22 — Review: fill in the gaps</div>
+    <div style="font-size:14pt;font-weight:700;color:#333;margin-bottom:6px;line-height:1.5;">Drag a word into each gap to complete the paragraph. Three chips are not needed.</div>
+    <div class="drag-bank" id="bank22">
+      <div class="drag-chip" draggable="true">transistors</div><div class="drag-chip" draggable="true">nibble</div><div class="drag-chip" draggable="true">1000</div><div class="drag-chip" draggable="true">256</div>
+      <div class="drag-chip" draggable="true">hexadecimal</div><div class="drag-chip" draggable="true">1024</div><div class="drag-chip" draggable="true">255</div><div class="drag-chip" draggable="true">transmission speeds</div>
+      <div class="drag-chip" draggable="true">denary</div><div class="drag-chip" draggable="true">file sizes</div>
+    </div>
+    <div style="background:#fff;border:1px solid #d0d0d0;border-radius:6px;padding:16px 20px;font-size:14pt;line-height:2.6;">
+      Computers use binary because they are built from <span id="dz22a" class="drop-zone"></span>, which have two states. People write binary in <span id="dz22b" class="drop-zone"></span> because it is shorter: one digit stands for a 4-bit <span id="dz22c" class="drop-zone"></span>. One byte can represent <span id="dz22d" class="drop-zone"></span> different states. A kibibyte is <span id="dz22e" class="drop-zone"></span> bytes, and binary prefixes are used for <span id="dz22f" class="drop-zone"></span>, while decimal prefixes are used for <span id="dz22g" class="drop-zone"></span>.
+    </div>
+    <button class="check-btn" id="btn22" onclick="checkDrop22()">&#10003; Check my answers</button>
+    <div class="drag-result" id="res22"></div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div style="background:#007BA6;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
+  <div style="font-size:16pt;font-weight:700;color:#ffffff;margin-bottom:16px;">&#10003; Summary — Topics 2.1.1 &amp; 2.1.2</div>
+  <div class="g2" style="gap:10px;">
+    <div style="background:rgba(255,255,255,0.15);border-radius:6px;padding:12px 16px;font-size:13pt;color:#fff;line-height:1.6;"><strong>Number bases:</strong> denary (base 10) for people, binary (base 2) for computers because transistors have two states, hexadecimal (base 16) as a short, readable form of binary.</div>
+    <div style="background:rgba(255,255,255,0.15);border-radius:6px;padding:12px 16px;font-size:13pt;color:#fff;line-height:1.6;"><strong>Binary &harr; denary:</strong> add the place values with a 1 under them; to go the other way, subtract place values from the largest down.</div>
+    <div style="background:rgba(255,255,255,0.15);border-radius:6px;padding:12px 16px;font-size:13pt;color:#fff;line-height:1.6;"><strong>Hexadecimal:</strong> digits 0–9 and A–F; multiply by 16s and 1s to get denary; one hex digit = one nibble, so convert to binary 4 bits at a time.</div>
+    <div style="background:rgba(255,255,255,0.15);border-radius:6px;padding:12px 16px;font-size:13pt;color:#fff;line-height:1.6;"><strong>Units:</strong> bit (b) = 0 or 1; nibble = 4 bits; byte (B) = 8 bits. n bits give 2<sup>n</sup> states, from 0 to 2<sup>n</sup> &minus; 1.</div>
+    <div style="background:rgba(255,255,255,0.15);border-radius:6px;padding:12px 16px;font-size:13pt;color:#fff;line-height:1.6;"><strong>Prefixes:</strong> IEC binary (Ki, Mi, Gi, Ti) go up in 1024s and are used for file sizes and capacity; SI decimal (k, M, G, T) go up in 1000s and are used for transmission speeds.</div>
+    <div style="background:rgba(255,255,255,0.15);border-radius:6px;padding:12px 16px;font-size:13pt;color:#fff;line-height:1.6;"><strong>Calculating:</strong> multiply to a smaller unit, divide to a bigger one; &times; 8 for bytes to bits; time = size in bits &divide; speed in bits per second.</div>
+  </div>
+</div>
+
+</div></div>
+<script>
+// ══════════ MATCH DROPDOWNS ══════════
+var MATCH_OPTS = {
+  match1: [
+    ['hex','Base 16, using the digits 0–9 and A–F'],
+    ['uns','A whole number that is zero or positive, stored without a sign'],
+    ['den','Base 10, the number system people use every day'],
+    ['base','The number of different digits a number system uses'],
+    ['bin','Base 2, using only the digits 0 and 1']
+  ],
+  match2: [
+    ['t9','10⁹ = 1 000 000 000'],
+    ['p20','2²⁰ = 1 048 576'],
+    ['t3','10³ = 1000'],
+    ['p40','2⁴⁰'],
+    ['x','2⁸ = 256'],
+    ['t12','10¹²'],
+    ['p10','2¹⁰ = 1024'],
+    ['t6','10⁶ = 1 000 000'],
+    ['p30','2³⁰ = 1 073 741 824']
+  ]
+};
+Object.keys(MATCH_OPTS).forEach(function(id) {
+  document.querySelectorAll('#' + id + ' .match-sel').forEach(function(sel) {
+    var h = '<option value="">— choose —</option>';
+    MATCH_OPTS[id].forEach(function(o){ h += '<option value="' + o[0] + '">' + o[1] + '</option>'; });
+    sel.innerHTML = h;
+  });
+});
+
+// ══════════ MCQ ══════════
+var mcqChosen = {};
+var MCQ_CORRECT = { 2:'b', 7:'c', 10:'a', 14:'c', 18:'d', 20:'b', 21:'c' };
+var MCQ_FB = {
+  2:{
+    ok:'&#10003; Correct! A transistor is a tiny electronic switch that is either off or on. Two states match the two binary digits, 0 and 1, so binary is the natural way for the hardware to store and process data.',
+    a:'&#10007; Binary numbers are actually <em>longer</em> than denary — 255 needs 8 binary digits. Computers use binary because transistors have two states.',
+    c:'&#10007; Hex is easier for people to read than binary. Computers use binary because transistors have two states: on and off.',
+    d:'&#10007; With the same number of digits, binary stores <em>smaller</em> numbers than denary. The reason is the hardware: transistors have two states.'
+  },
+  7:{
+    ok:'&#10003; Correct! Moving every bit one place left doubles each place value, so 50 becomes 100. Check: 0110 0100 = 64 + 32 + 4 = 100.',
+    a:'&#10007; Shifting left does not add 1. Each bit moves to a column worth twice as much, so the value doubles: 100.',
+    b:'&#10007; That would be a shift to the <em>right</em>, which halves the value. A left shift doubles it: 100.',
+    d:'&#10007; Multiplying by 10 happens when you add a 0 in <em>denary</em>. In binary, a left shift multiplies by 2: 100.'
+  },
+  10:{
+    ok:'&#10003; Correct! #FF8800 is 6 characters instead of 24 bits, so it is far easier to read, remember and type. Each hex digit maps straight to 4 bits, so it converts exactly.',
+    b:'&#10007; The colour is stored in binary either way, so hex saves no memory. It is used because it is easier for people.',
+    c:'&#10007; The computer never processes hex — everything is binary inside. Hex is just a human-friendly way to write it.',
+    d:'&#10007; Binary can represent colours — the computer stores this colour as 24 bits. Hex is simply easier for the developer to write.'
+  },
+  14:{
+    ok:'&#10003; Correct! One byte is 8 bits, giving 2<sup>8</sup> = 256 different values. Counting starts at 0, so the values are 0 to 255.',
+    a:'&#10007; 255 is the highest value, but 0 is a value too, so there are 256 different levels.',
+    b:'&#10007; There are 256 values, but because counting starts at 0 the highest is 255, not 256.',
+    d:'&#10007; A byte has 8 <em>bits</em>, but 8 bits give 2<sup>8</sup> = 256 values, from 0 to 255.'
+  },
+  18:{
+    ok:'&#10003; Correct! 1 TB = 10<sup>12</sup> bytes. 10<sup>12</sup> &divide; 2<sup>30</sup> &asymp; 931 GiB. Nothing is missing — the same space is being measured with a bigger unit.',
+    a:'&#10007; No space is missing. The maker counts in powers of 10 and the computer in powers of 2, so the number shown is smaller.',
+    b:'&#10007; A new, empty drive shows about 931 GiB before anything is installed. It is the difference between decimal and binary prefixes.',
+    c:'&#10007; If it reported in bits the number would be 8 times <em>bigger</em>. The difference comes from decimal vs binary prefixes.'
+  },
+  20:{
+    ok:'&#10003; Correct! 1 GiB = 2<sup>30</sup> bytes, so 3 GiB = 3 &times; 2<sup>30</sup> bytes, and &times; 8 turns bytes into bits.',
+    a:'&#10007; 10<sup>9</sup> is giga (G), a decimal prefix. GiB is a binary prefix, so use 2<sup>30</sup>: 3 &times; 2<sup>30</sup> &times; 8.',
+    c:'&#10007; That gives the number of <em>bytes</em>. Multiply by 8 to get bits: 3 &times; 2<sup>30</sup> &times; 8.',
+    d:'&#10007; 2<sup>10</sup> is kibi (Ki). Gibi is 2<sup>30</sup>, so: 3 &times; 2<sup>30</sup> &times; 8.'
+  },
+  21:{
+    ok:'&#10003; Correct! Size: 25 &times; 2<sup>20</sup> &times; 8 = 209 715 200 bits. Speed: 10 Mbps = 10 000 000 bits per second. Time = 209 715 200 &divide; 10 000 000 &asymp; 21 seconds.',
+    a:'&#10007; You may have forgotten to &times; 8 to turn bytes into bits. 25 &times; 2<sup>20</sup> &times; 8 &divide; 10<sup>7</sup> &asymp; 21 seconds.',
+    b:'&#10007; Close — 20 seconds comes from treating MiB as 10<sup>6</sup> bytes. MiB is 2<sup>20</sup> bytes, so the answer is about 21 seconds.',
+    d:'&#10007; Check the units: the file is in bytes and the speed in bits. 25 &times; 2<sup>20</sup> &times; 8 &divide; 10<sup>7</sup> &asymp; 21 seconds.'
+  }
+};
+function pickOpt(qNum, letter, el) {
+  if (mcqChosen[qNum]) return;
+  mcqChosen[qNum] = true;
+  var correct = MCQ_CORRECT[qNum], isOk = (letter === correct);
+  var box = document.getElementById('opts' + qNum), fb = document.getElementById('fb' + qNum);
+  box.querySelectorAll('.opt').forEach(function(o) {
+    o.classList.add('locked');
+    var m = o.getAttribute('onclick').match(/pickOpt\(\d+,'([a-d])'/), v = m ? m[1] : '';
+    if (v === correct) o.classList.add(isOk ? 'correct' : 'reveal');
+    else if (v === letter && !isOk) o.classList.add('wrong');
+  });
+  fb.style.display = 'block';
+  fb.className = 'fb ' + (isOk ? 'fb-ok' : 'fb-bad');
+  fb.innerHTML = isOk ? MCQ_FB[qNum].ok : (MCQ_FB[qNum][letter] || '&#10007; Not quite — the correct answer is highlighted in green above.');
+}
+
+// ══════════ WORD CHIPS ══════════
+var woptChosen = {};
+var WOPT_CORRECT = { 11:'b' };
+var WOPT_FB = {
+  11:{
+    ok:'&#10003; Correct! 4 bits give 2<sup>4</sup> = 16 combinations — exactly the 16 hex digits 0–F. That is why one hex digit = one nibble.',
+    a:'&#10007; 2 bits only give 4 combinations. 16 hex digits need <strong>4</strong> bits (2<sup>4</sup> = 16).',
+    c:'&#10007; 8 bits (a byte) is <em>two</em> hex digits. One hex digit is <strong>4</strong> bits.',
+    d:'&#10007; 16 is the number of hex digits, not bits. 2<sup>4</sup> = 16, so one hex digit is <strong>4</strong> bits.'
+  }
+};
+function pickWopt(qNum, letter, el) {
+  if (woptChosen[qNum]) return;
+  woptChosen[qNum] = true;
+  var container = el.parentNode, correct = WOPT_CORRECT[qNum], isOk = (letter === correct);
+  container.querySelectorAll('.wopt').forEach(function(w) {
+    w.classList.add('locked');
+    var m = w.getAttribute('onclick').match(/pickWopt\(\d+,'([a-d])'/), v = m ? m[1] : '';
+    if (v === correct) w.classList.add(isOk ? 'correct' : 'reveal');
+    else if (v === letter && !isOk) w.classList.add('wrong');
+  });
+  var fb = document.getElementById('fb' + qNum);
+  fb.style.display = 'block';
+  fb.className = 'fb ' + (isOk ? 'fb-ok' : 'fb-bad');
+  fb.innerHTML = isOk ? WOPT_FB[qNum].ok : (WOPT_FB[qNum][letter] || '&#10007; Not quite — the correct answer is highlighted above.');
+}
+
+// ══════════ TRUE / FALSE ══════════
+var TF_DATA = {
+  1:{ ok:'&#10003; True! After 0–9, hex uses A (10), B (11), C (12), D (13), E (14) and F (15).', bad:'&#10007; This is True. Hex needs 16 digits: 0–9 then A–F.' },
+  2:{ ok:'&#10003; Correct — False! The CPU only ever works in binary. Hex is purely for people to read and write.', bad:'&#10007; This is False. Computers process binary; hex is only a shorthand for humans.' },
+  3:{ ok:'&#10003; True! In binary each column is 2&times; the last (1, 2, 4, 8…); in hex 16&times; (1, 16, 256…); in denary 10&times;.', bad:'&#10007; This is True. Place values grow by multiplying by the base each time.' },
+  4:{ ok:'&#10003; Correct — False! "Unsigned" means there is no sign, so only zero and positive whole numbers can be stored.', bad:'&#10007; This is False. Unsigned integers are zero or positive only.' },
+  5:{ ok:'&#10003; True! 1 byte = 8 bits = 2 &times; 4-bit nibbles.', bad:'&#10007; This is True. A nibble is 4 bits, so two nibbles make a byte.' },
+  6:{ ok:'&#10003; Correct — False! Each extra bit <em>doubles</em> the number of states: 3 bits give 8, 4 bits give 16.', bad:'&#10007; This is False. One more bit doubles the states (2<sup>n</sup>).' },
+  7:{ ok:'&#10003; Correct — False! Mb is megabits and MB is megabytes. 16 Mb is only 2 MB.', bad:'&#10007; This is False. b = bits, B = bytes, and a byte is 8 bits.' },
+  8:{ ok:'&#10003; True! 4 bits give 2<sup>4</sup> = 16 states, from 0000 (0) to 1111 (15).', bad:'&#10007; This is True. 4 bits give 16 states: 0 to 15.' }
+};
+function doTF(n, userAns, correctAns) {
+  var row = document.getElementById('tf' + n);
+  if (!row || row.classList.contains('done')) return;
+  row.classList.add('done');
+  var isOk = (userAns === correctAns);
+  row.querySelectorAll('.tf-btn').forEach(function(b) {
+    var bT = b.textContent.trim() === 'True';
+    if (bT === userAns) b.className = isOk ? 'tf-btn ok' : 'tf-btn bad';
+    if (!isOk && bT === correctAns) b.className = 'tf-btn show';
+  });
+  var fb = document.createElement('div');
+  fb.style.cssText = 'margin-top:8px;padding:10px 14px;border-radius:6px;font-size:13pt;line-height:1.6;font-family:Lato,sans-serif;';
+  fb.style.background = isOk ? '#e8f5e9' : '#ffebee';
+  fb.style.color      = isOk ? '#1b5e20' : '#7f0000';
+  fb.style.border     = isOk ? '1px solid #81c784' : '1px solid #ef9a9a';
+  fb.innerHTML = isOk ? TF_DATA[n].ok : TF_DATA[n].bad;
+  row.appendChild(fb);
+}
+
+// ══════════ MATCH ══════════
+function runMatch(matchId, btnId, resId, okMsg, badMsg) {
+  var rows = document.querySelectorAll('#' + matchId + ' .match-row'), allOk = true;
+  rows.forEach(function(row) {
+    row.classList.remove('ok','bad');
+    var sel = row.querySelector('.match-sel');
+    if (sel.value === sel.getAttribute('data-ans')) row.classList.add('ok');
+    else { row.classList.add('bad'); allOk = false; }
+  });
+  var res = document.getElementById(resId);
+  res.style.display = 'block';
+  if (allOk) {
+    res.className = 'match-result fb fb-ok'; res.innerHTML = '&#10003; ' + okMsg;
+    document.getElementById(btnId).disabled = true;
+    rows.forEach(function(r){ r.querySelector('.match-sel').disabled = true; });
+  } else {
+    res.className = 'match-result fb fb-bad'; res.innerHTML = '&#10007; ' + badMsg;
+  }
+}
+function checkMatch1() {
+  runMatch('match1','match1-btn','match1-res',
+    'All correct! The base tells you how many digits there are: binary 2, denary 10, hexadecimal 16.',
+    'One or more are wrong — check those in red. Think about how many digits each system uses.');
+}
+function checkMatch2() {
+  runMatch('match2','match2-btn','match2-res',
+    'All correct! Binary prefixes are powers of 2 going up in steps of 2<sup>10</sup>; decimal prefixes are powers of 10 going up in steps of 10<sup>3</sup>.',
+    'One or more are wrong. Prefixes ending in "-bi" are powers of 2 (2<sup>10</sup>, 2<sup>20</sup>, 2<sup>30</sup>, 2<sup>40</sup>); the others are powers of 10 (10<sup>3</sup>, 10<sup>6</sup>, 10<sup>9</sup>, 10<sup>12</sup>).');
+}
+
+// ══════════ NUMBER INPUT CHECKER ══════════
+var NUM_OK = {
+  5:'All correct! Add up only the place values that have a 1 under them.',
+  8:'All correct! Hex to denary: multiply by 16s and 1s. Denary to hex: divide by 16, and the remainder is the 1s digit.',
+  13:'All correct! n bits give 2<sup>n</sup> states, the largest value is 2<sup>n</sup> &minus; 1, and to find the bits needed, pick the smallest power of 2 that is big enough.',
+  19:'All correct! Multiply to a smaller unit, divide to a bigger one, use 1024 for binary prefixes and 1000 for decimal ones, and &times; 8 for bytes to bits.'
+};
+function norm(v) { return String(v).replace(/[\s,]/g, '').toUpperCase(); }
+function checkNums(n) {
+  var inputs = document.querySelectorAll('#num' + n + ' input.num'), res = document.getElementById('res' + n);
+  var wrong = [], empty = false;
+  inputs.forEach(function(inp) {
+    inp.classList.remove('ok','bad');
+    if (inp.value.trim() === '') { empty = true; return; }
+    if (norm(inp.value) === norm(inp.getAttribute('data-ans'))) inp.classList.add('ok');
+    else { inp.classList.add('bad'); wrong.push(inp.getAttribute('data-hint')); }
+  });
+  res.style.display = 'block';
+  if (empty) { res.className = 'drag-result fb fb-bad'; res.innerHTML = '&#10007; Fill in every box before checking.'; return; }
+  if (!wrong.length) {
+    res.className = 'drag-result fb fb-ok'; res.innerHTML = '&#10003; ' + NUM_OK[n];
+    document.getElementById('btn' + n).disabled = true;
+    inputs.forEach(function(i){ i.readOnly = true; });
+  } else {
+    res.className = 'drag-result fb fb-bad';
+    res.innerHTML = '&#10007; Not quite — fix the boxes in red. Hint: ' + wrong.slice(0, 2).join(' ') + (wrong.length > 2 ? ' (' + (wrong.length - 2) + ' more to fix.)' : '');
+  }
+}
+
+// ══════════ BINARY EXPLORER ══════════
+var EX_TARGETS = [37, 200, 255], exStep = 0, exBits = [0,0,0,0,0,0,0,0];
+(function buildExplorer() {
+  var pv = [128,64,32,16,8,4,2,1], h = '';
+  pv.forEach(function(p, i) {
+    h += '<div class="bitcol"><div class="bitpv">' + p + '</div><button class="bitbtn" onclick="toggleBit(' + i + ',this)">0</button></div>';
+  });
+  document.getElementById('bits4').innerHTML = h;
+  drawTargets();
+})();
+function drawTargets() {
+  var h = 'Targets: ';
+  EX_TARGETS.forEach(function(t, i) {
+    h += '<span class="target ' + (i < exStep ? 'done' : (i === exStep ? 'now' : '')) + '">' + (i < exStep ? '&#10003; ' : '') + t + '</span>';
+  });
+  document.getElementById('targets4').innerHTML = h;
+}
+function toggleBit(i, btn) {
+  exBits[i] = 1 - exBits[i];
+  btn.textContent = exBits[i];
+  btn.classList.toggle('on', exBits[i] === 1);
+  var v = 0; exBits.forEach(function(b, k){ if (b) v += Math.pow(2, 7 - k); });
+  document.getElementById('val4').textContent = v;
+  var fb = document.getElementById('fb4');
+  if (exStep < EX_TARGETS.length && v === EX_TARGETS[exStep]) {
+    var bin = exBits.join('');
+    exStep++;
+    drawTargets();
+    fb.style.display = 'block';
+    fb.className = 'fb fb-ok';
+    if (exStep < EX_TARGETS.length) {
+      fb.innerHTML = '&#10003; ' + EX_TARGETS[exStep - 1] + ' = <span class="mono">' + bin + '</span>. Now make ' + EX_TARGETS[exStep] + '.';
+    } else {
+      fb.innerHTML = '&#10003; All three targets hit! 255 = <span class="mono">11111111</span> — every bit is on, so this is the largest number 8 bits can hold. Keep exploring: what is the smallest number with the 128 bit on?';
+    }
+  }
+}
+
+// ══════════ DRAG & DROP ENGINE (mouse drag + tap-to-place) ══════════
+var DONE = {};
+document.querySelectorAll('[id^="bank"] .drag-chip').forEach(function(c){ c.setAttribute('data-home', c.parentNode.id); });
+function actOf(el) { return el && el.closest ? el.closest('.act') : null; }
+function dropTarget(el) {
+  if (el && el.nodeType !== 1) el = el.parentNode;
+  return el && el.closest ? el.closest('.drop-zone, .drag-bank') : null;
+}
+function placeChip(chip, tgt) {
+  if (!chip || !tgt || chip.classList.contains('locked')) return;
+  var act = actOf(tgt);
+  if (!act || actOf(chip) !== act || DONE[act.getAttribute('data-n')]) return;
+  if (tgt.classList.contains('drop-zone')) {
+    var d = tgt.querySelector('.drag-chip');
+    if (d === chip) return;
+    if (d) {
+      var from = chip.parentNode;
+      if (from.classList.contains('drop-zone')) from.appendChild(d);
+      else document.getElementById(d.getAttribute('data-home')).appendChild(d);
+    }
+    tgt.appendChild(chip);
+  } else if (tgt !== chip.parentNode) {
+    tgt.appendChild(chip);
+  }
+}
+var _drag = null;
+document.addEventListener('dragstart', function(e) {
+  var t = e.target;
+  if (t.classList && t.classList.contains('drag-chip') && !t.classList.contains('locked')) {
+    _drag = t; e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', t.textContent);
+  }
+});
+document.addEventListener('dragover', function(e) { var t = dropTarget(e.target); if (t && _drag) { e.preventDefault(); t.classList.add('drag-over'); } });
+document.addEventListener('dragleave', function(e) { var t = dropTarget(e.target); if (t) t.classList.remove('drag-over'); });
+document.addEventListener('drop', function(e) {
+  e.preventDefault();
+  var t = dropTarget(e.target);
+  if (t) { t.classList.remove('drag-over'); placeChip(_drag, t); }
+  _drag = null;
+});
+document.addEventListener('dragend', function() {
+  _drag = null;
+  document.querySelectorAll('.drag-over').forEach(function(z){ z.classList.remove('drag-over'); });
+});
+var _pick = null;
+function unpick() { if (_pick) _pick.classList.remove('picked'); _pick = null; }
+document.addEventListener('click', function(e) {
+  var el = e.target; if (!el.closest) return;
+  var chip = el.closest('.drag-chip'), tgt = el.closest('.drop-zone, .drag-bank');
+  if (!_pick) { if (chip && !chip.classList.contains('locked')) { _pick = chip; chip.classList.add('picked'); } return; }
+  if (chip === _pick) { unpick(); return; }
+  if (chip && !chip.classList.contains('locked') && !chip.parentNode.classList.contains('drop-zone') && actOf(chip) === actOf(_pick)) {
+    unpick(); _pick = chip; chip.classList.add('picked'); return;
+  }
+  if (tgt) { placeChip(_pick, tgt); unpick(); return; }
+  unpick();
+});
+function getDZ(id) { var z = document.getElementById(id), c = z ? z.querySelector('.drag-chip') : null; return c ? c.textContent.trim() : ''; }
+function getSort(id) { var z = document.getElementById(id); return z ? Array.from(z.querySelectorAll('.drag-chip')).map(function(c){ return c.textContent.trim(); }) : []; }
+function lockAct(n) {
+  var act = document.querySelector('.act[data-n="' + n + '"]');
+  if (act) act.querySelectorAll('.drag-chip').forEach(function(c){ c.classList.add('locked'); c.setAttribute('draggable','false'); });
+}
+function checkSlots(n, ids, ans, okMsg, hints, emptyMsg) {
+  if (DONE[n]) return;
+  unpick();
+  var vals = ids.map(getDZ), res = document.getElementById('res' + n);
+  res.style.display = 'block';
+  if (vals.some(function(v){ return v === ''; })) { res.className = 'drag-result fb fb-bad'; res.innerHTML = '&#10007; ' + emptyMsg; return; }
+  var wrong = [];
+  vals.forEach(function(v, i){ if (v !== ans[i]) wrong.push(hints[i]); });
+  if (wrong.length === 0) {
+    DONE[n] = true; document.getElementById('btn' + n).disabled = true; lockAct(n);
+    res.className = 'drag-result fb fb-ok'; res.innerHTML = '&#10003; ' + okMsg;
+  } else {
+    res.className = 'drag-result fb fb-bad';
+    res.innerHTML = '&#10007; Not quite. ' + wrong.slice(0, 2).join(' ') + (wrong.length > 2 ? ' (' + (wrong.length - 2) + ' more to fix.)' : '');
+  }
+}
+function checkDrop6() {
+  var pv = [128,64,32,16,8,4,2,1];
+  checkSlots(6, ['dz6a','dz6b','dz6c','dz6d','dz6e','dz6f','dz6g','dz6h'],
+    ['0','1','0','1','1','0','0','1'],
+    'All correct! 89 = <span class="mono">01011001</span>: 89 &minus; 64 = 25, 25 &minus; 16 = 9, 9 &minus; 8 = 1, 1 &minus; 1 = 0. Check: 64 + 16 + 8 + 1 = 89.',
+    pv.map(function(p, i) {
+      return ['128 is bigger than 89, so the 128 column is <strong>0</strong>.',
+              '64 fits into 89 — write <strong>1</strong>, leaving 25.',
+              '32 does not fit into 25 — <strong>0</strong>.',
+              '16 fits into 25 — <strong>1</strong>, leaving 9.',
+              '8 fits into 9 — <strong>1</strong>, leaving 1.',
+              '4 does not fit into 1 — <strong>0</strong>.',
+              '2 does not fit into 1 — <strong>0</strong>.',
+              '1 fits into 1 — <strong>1</strong>, leaving 0.'][i];
+    }),
+    'Drag a 0 or 1 into every column before checking.');
+}
+function checkDrop9() {
+  checkSlots(9, ['dz9a','dz9b','dz9c','dz9d'], ['B','6','0011','1100'],
+    'All correct! <span class="mono">1011</span> = 11 = B and <span class="mono">0110</span> = 6, so 10110110 = B6. Going the other way, 3 = <span class="mono">0011</span> and C = <span class="mono">1100</span>, so 3C = 00111100.',
+    ['<span class="mono">1011</span> = 8 + 2 + 1 = 11, which is <strong>B</strong> in hex (not "11").',
+     '<span class="mono">0110</span> = 4 + 2 = <strong>6</strong>.',
+     '3 as a nibble is <strong>0011</strong> — always write all 4 bits.',
+     'C = 12 = 8 + 4, so the nibble is <strong>1100</strong>.'],
+    'Drag a chip into every gap before checking.');
+}
+function checkDrop12() {
+  checkSlots(12, ['dz12a','dz12b','dz12c','dz12d','dz12e','dz12f','dz12g'],
+    ['bit','nibble','byte','kibibyte','mebibyte','gibibyte','tebibyte'],
+    'All correct! bit &lt; nibble (4 bits) &lt; byte (8 bits) &lt; KiB &lt; MiB &lt; GiB &lt; TiB, with each binary prefix 1024 times the last.',
+    ['1st: the smallest unit is a single <strong>bit</strong>.',
+     '2nd: 4 bits make a <strong>nibble</strong>.',
+     '3rd: 8 bits make a <strong>byte</strong>.',
+     '4th: 1024 bytes make a <strong>kibibyte</strong>.',
+     '5th: 1024 KiB make a <strong>mebibyte</strong>.',
+     '6th: 1024 MiB make a <strong>gibibyte</strong>.',
+     '7th: 1024 GiB make a <strong>tebibyte</strong>.'],
+    'Drag a unit into every position before checking.');
+}
+function checkDrop22() {
+  checkSlots(22, ['dz22a','dz22b','dz22c','dz22d','dz22e','dz22f','dz22g'],
+    ['transistors','hexadecimal','nibble','256','1024','file sizes','transmission speeds'],
+    'All correct — a great summary of number bases and units!',
+    ['Gap 1: computers are built from <strong>transistors</strong>, which are on or off.',
+     'Gap 2: the short form people use is <strong>hexadecimal</strong>.',
+     'Gap 3: 4 bits are a <strong>nibble</strong>.',
+     'Gap 4: 8 bits give 2<sup>8</sup> = <strong>256</strong> states (255 is the largest <em>value</em>).',
+     'Gap 5: kibi = 2<sup>10</sup> = <strong>1024</strong>.',
+     'Gap 6: binary prefixes are used for <strong>file sizes</strong> and capacity.',
+     'Gap 7: decimal prefixes are used for <strong>transmission speeds</strong>.'],
+    'Drag a word into every gap before checking.');
+}
+function checkSort16() {
+  if (DONE[16]) return;
+  unpick();
+  var cols = {
+    'sort16-iec': ['Based on powers of 2','1 kibi = 1024','Used for file sizes and memory capacity','Symbols Ki, Mi, Gi, Ti'],
+    'sort16-si': ['Based on powers of 10','1 kilo = 1000','Used for network transmission speeds','Symbols k, M, G, T']
+  };
+  var names = { 'sort16-iec':'IEC binary', 'sort16-si':'SI decimal' };
+  var res = document.getElementById('res16'), count = 0, wrong = [];
+  res.style.display = 'block';
+  Object.keys(cols).forEach(function(zone) {
+    getSort(zone).forEach(function(v) {
+      count++;
+      if (cols[zone].indexOf(v) === -1) {
+        var home = Object.keys(cols).filter(function(z){ return cols[z].indexOf(v) !== -1; })[0];
+        wrong.push('“' + v + '” belongs in <strong>' + names[home] + '</strong>.');
+      }
+    });
+  });
+  if (count < 8) { res.className = 'drag-result fb fb-bad'; res.innerHTML = '&#10007; Drag all 8 chips into a column before checking.'; return; }
+  if (!wrong.length) {
+    DONE[16] = true; document.getElementById('btn16').disabled = true; lockAct(16);
+    res.className = 'drag-result fb fb-ok';
+    res.innerHTML = '&#10003; All correct! IEC binary prefixes (Ki, Mi, Gi, Ti) use powers of 2 for file sizes and capacity; SI decimal prefixes (k, M, G, T) use powers of 10 for transmission speeds.';
+  } else {
+    res.className = 'drag-result fb fb-bad';
+    res.innerHTML = '&#10007; ' + wrong.slice(0, 2).join(' ') + ' Tip: the "-bi" prefixes are the binary ones.';
+  }
+}
+</script>
+</body>
+</html>
